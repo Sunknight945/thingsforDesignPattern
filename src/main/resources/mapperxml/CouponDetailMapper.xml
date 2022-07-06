@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uiys.thingsfordesignpattern.mapper.CouponDetailMapper">
+  <resultMap id="BaseResultMap" type="com.uiys.thingsfordesignpattern.domain.CouponDetail">
+    <!--@mbg.generated generated on Thu Jul 07 01:55:35 CST 2022.-->
+    <!--@Table coupon_detail-->
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="parent_uuid" jdbcType="VARCHAR" property="parentUuid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="receiver_uuid" jdbcType="VARCHAR" property="receiverUuid" />
+    <result column="receiver_time" jdbcType="TIMESTAMP" property="receiverTime" />
+    <result column="use_state" jdbcType="TINYINT" property="useState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Thu Jul 07 01:55:35 CST 2022.-->
+    uuid, parent_uuid, create_time, update_time, receiver_uuid, receiver_time, use_state
+  </sql>
+</mapper>
