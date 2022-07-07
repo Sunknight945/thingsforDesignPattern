@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -72,8 +73,27 @@ public class Coupon implements Serializable {
     /**
      * 类型
      */
-    @Column(name = "type")
+    @Column(name = "type 1:直接减免 2:直接打折")
     private Integer type;
+
+
+    /**
+     * 减免金额
+     * Discount amount of coupons
+     */
+    @Column(name = "minus_amount_of_coupons")
+    private BigDecimal minusAmountOfCoupons;
+
+
+    /**
+     * 折扣
+     * Discount amount of coupons
+     */
+    @Column(name = "discount")
+    private BigDecimal discount;
+
+
+
 
     private static final long serialVersionUID = 1L;
 }

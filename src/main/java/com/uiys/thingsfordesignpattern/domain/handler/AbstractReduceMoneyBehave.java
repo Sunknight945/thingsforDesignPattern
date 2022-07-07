@@ -1,8 +1,11 @@
 package com.uiys.thingsfordesignpattern.domain.handler;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.uiys.thingsfordesignpattern.domain.OrderDiscount;
 import com.uiys.thingsfordesignpattern.dto.OrderInfo;
 import com.uiys.thingsfordesignpattern.mapper.CouponDetailMapper;
+import com.uiys.thingsfordesignpattern.mapper.CouponMapper;
+import com.uiys.thingsfordesignpattern.model.Coupon;
 import com.uiys.thingsfordesignpattern.model.CouponDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +22,10 @@ public abstract class AbstractReduceMoneyBehave implements ReduceMoneyReduceHand
     @Autowired
     private CouponDetailMapper couponDetailMapper;
 
+    @Autowired
+    private CouponMapper couponMapper;
+
+
     public OrderInfo getOrderInfo(OrderDiscount orderDiscount) {
         String uuid = "veuiyigeorderuuid";
         List<String> skuUuids = Arrays.asList("233", "244", "255");
@@ -31,10 +38,17 @@ public abstract class AbstractReduceMoneyBehave implements ReduceMoneyReduceHand
     }
 
     public CouponDetail getCouponDetail(OrderDiscount orderDiscount) {
-        CouponDetail couponDetail = new CouponDetail();
-        couponDetail.setUuid(orderDiscount.getCouponDetailUuid());
-        Optional<CouponDetail> optionalCouponDetail = Optional.ofNullable(couponDetailMapper.selectOne(couponDetail));
+        QueryWrapper<CouponDetail> couponDetailQueryWrapper = new QueryWrapper<>();
+        couponDetailQueryWrapper.eq("uuid", orderDiscount.getCouponDetailUuid());
+        Optional<CouponDetail> optionalCouponDetail = Optional.ofNullable(couponDetailMapper.selectOne(couponDetailQueryWrapper));
         return optionalCouponDetail.get();
+    }
+
+    public Coupon getCoupon(CouponDetail couponDetail) {
+        QueryWrapper<Coupon> couponQueryWrapper = new QueryWrapper<>();
+        couponQueryWrapper.eq("uuid", couponDetail.getParentUuid());
+        Optional<Coupon> optionalCoupon = Optional.ofNullable(couponMapper.selectOne(couponQueryWrapper));
+        return optionalCoupon.get();
     }
 
 

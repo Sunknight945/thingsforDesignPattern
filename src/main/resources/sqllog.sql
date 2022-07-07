@@ -1,18 +1,20 @@
 CREATE
-DATABASE IF NOT EXISTS thing_for_design_pattern DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+    DATABASE IF NOT EXISTS thing_for_design_pattern DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 drop table if exists coupon;
 create table coupon
 (
-    uuid              varchar(32) not null comment '优惠券的uuid'
+    uuid                    varchar(32)       not null comment '优惠券的uuid'
         primary key,
-    create_time       datetime    not null comment '创建时间',
-    update_time       datetime    null comment '修改时间',
-    publish_time      datetime    null comment '发布时间',
-    publish_begin_num int         not null comment '最大领取数量',
-    publish_left_num  int         not null comment '剩余数量',
-    start_time        datetime    not null comment '优惠券开始时间',
-    end_time          datetime    not null comment '优惠券失效时间',
-    type              int         not null comment '类型 1 2 3'
+    create_time             datetime          not null comment '创建时间',
+    update_time             datetime          null comment '修改时间',
+    publish_time            datetime          null comment '发布时间',
+    publish_begin_num       int               not null comment '最大领取数量',
+    publish_left_num        int               not null comment '剩余数量',
+    start_time              datetime          not null comment '优惠券开始时间',
+    end_time                datetime          not null comment '优惠券失效时间',
+    type                    int               not null comment '类型 1 2 3',
+    minus_amount_of_coupons decimal default 0 null comment '直接减免金额',
+    discount                decimal           null comment '打折数量'
 )
     comment '优惠券母券';
 
