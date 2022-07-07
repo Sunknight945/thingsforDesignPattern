@@ -11,6 +11,5 @@ public interface ReduceMoneyBehave {
 
     boolean canUse(OrderDiscount orderDiscount);
 
-    ReduceMoneyBehave getReduceMoneyBehaveHandler(OrderDiscount orderDiscount);
-
+    // OrderDiscount process(OrderDiscount orderDiscount);
 }

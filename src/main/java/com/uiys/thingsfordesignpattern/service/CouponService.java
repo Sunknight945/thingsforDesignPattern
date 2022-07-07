@@ -1,5 +1,6 @@
 package com.uiys.thingsfordesignpattern.service;
 
+import com.uiys.thingsfordesignpattern.domain.OrderDiscount;
 import com.uiys.thingsfordesignpattern.dto.CouponDTO;
 
 /**
@@ -8,4 +9,6 @@ import com.uiys.thingsfordesignpattern.dto.CouponDTO;
 
 public interface CouponService {
     Object add(CouponDTO couponDTO);
+
+    Object getCouponDiscountInfo(OrderDiscount orderDiscount);
 }

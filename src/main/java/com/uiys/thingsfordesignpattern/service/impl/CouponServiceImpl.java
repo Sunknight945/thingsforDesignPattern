@@ -1,6 +1,10 @@
 package com.uiys.thingsfordesignpattern.service.impl;
 
 import com.uiys.thingsfordesignpattern.convert.CouponConvert;
+import com.uiys.thingsfordesignpattern.domain.OrderDiscount;
+import com.uiys.thingsfordesignpattern.domain.ReduceDetail;
+import com.uiys.thingsfordesignpattern.domain.handler.ReduceMoneyBehave;
+import com.uiys.thingsfordesignpattern.domain.handler.ReduceMoneyReduceHandler;
 import com.uiys.thingsfordesignpattern.model.Coupon;
 import com.uiys.thingsfordesignpattern.dto.CouponDTO;
 import com.uiys.thingsfordesignpattern.mapper.CouponMapper;
@@ -20,6 +24,9 @@ public class CouponServiceImpl implements CouponService {
     @Autowired
     private CouponMapper couponMapper;
 
+    @Autowired
+    private ReduceDetail reduceDetail;
+
     // @Autowired
     // private CouponRepository couponRepository;
 
@@ -34,6 +41,14 @@ public class CouponServiceImpl implements CouponService {
         coupon.setCreateTime(TimeUtil.getDateTime());
         couponMapper.insert(coupon);
         return coupon.getUuid();
+    }
+
+
+    @Override
+    public Object getCouponDiscountInfo(OrderDiscount orderDiscount) {
+        ReduceMoneyReduceHandler reduceMoneyBehave = reduceDetail.orderDiscount(orderDiscount);
+        orderDiscount = reduceMoneyBehave.process(orderDiscount);
+        return orderDiscount;
     }
 
     public static void main(String[] args) {

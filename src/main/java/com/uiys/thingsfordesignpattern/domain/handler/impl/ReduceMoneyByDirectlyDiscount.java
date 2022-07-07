@@ -3,24 +3,23 @@ package com.uiys.thingsfordesignpattern.domain.handler.impl;
 import com.uiys.thingsfordesignpattern.constant.DiscountEnum;
 import com.uiys.thingsfordesignpattern.domain.OrderDiscount;
 import com.uiys.thingsfordesignpattern.domain.handler.AbstractReduceMoneyBehave;
-import com.uiys.thingsfordesignpattern.domain.handler.ReduceMoneyBehave;
 import com.uiys.thingsfordesignpattern.dto.OrderInfo;
 import com.uiys.thingsfordesignpattern.model.Coupon;
 import com.uiys.thingsfordesignpattern.model.CouponDetail;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 /**
  * @author :uiys
  * 减去
  */
-@Service
-public class ReduceMoneyByDirectlyDiscont extends AbstractReduceMoneyBehave {
+@Component
+public class ReduceMoneyByDirectlyDiscount extends AbstractReduceMoneyBehave {
     @Override
     public boolean canUse(OrderDiscount orderDiscount) {
         Boolean flag = false;
         CouponDetail couponDetail = super.getCouponDetail(orderDiscount);
-        String parentUuid = couponDetail.getParentUuid();
-        OrderInfo orderInfo = super.getOrderInfo(orderDiscount);
         Coupon coupon = super.getCoupon(couponDetail);
         Integer type = coupon.getType();
         if (DiscountEnum.DIRECTLY_DISCOUNT.discountType.equals(type)) {
@@ -29,13 +28,18 @@ public class ReduceMoneyByDirectlyDiscont extends AbstractReduceMoneyBehave {
         return flag;
     }
 
-    @Override
-    public ReduceMoneyBehave getReduceMoneyBehaveHandler(OrderDiscount orderDiscount) {
-        return null;
-    }
 
     @Override
     public OrderDiscount process(OrderDiscount orderDiscount) {
-        return null;
+        OrderInfo orderInfo = super.getOrderInfo(orderDiscount);
+        CouponDetail couponDetail = super.getCouponDetail(orderDiscount);
+        Coupon coupon = super.getCoupon(couponDetail);
+        BigDecimal minusAmountOfCoupons = coupon.getMinusAmountOfCoupons();
+        BigDecimal totalMoney = orderInfo.getTotalMoney();
+        orderDiscount.setOrderUuid(orderInfo.getUuid());
+        orderDiscount.setOriginCost(totalMoney);
+        orderDiscount.setMinusMoney(totalMoney.subtract(totalMoney.multiply(minusAmountOfCoupons)));
+        orderDiscount.setAfterDiscountPay(totalMoney.multiply(minusAmountOfCoupons));
+        return orderDiscount;
     }
 }
