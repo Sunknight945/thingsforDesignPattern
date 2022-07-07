@@ -1,4 +1,4 @@
-package com.uiys.thingsfordesignpattern.domain;
+package com.uiys.thingsfordesignpattern.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.uiys.thingsfordesignpattern.convert;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.uiys.thingsfordesignpattern.domain.Coupon;
+import com.uiys.thingsfordesignpattern.model.Coupon;
 import com.uiys.thingsfordesignpattern.dto.CouponDTO;
 
 /**

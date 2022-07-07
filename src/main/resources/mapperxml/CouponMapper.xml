@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uiys.thingsfordesignpattern.mapper.CouponMapper">
-    <resultMap id="BaseResultMap" type="com.uiys.thingsfordesignpattern.domain.Coupon">
+    <resultMap id="BaseResultMap" type="com.uiys.thingsfordesignpattern.model.Coupon">
         <!--@mbg.generated generated on Thu Jul 07 01:55:35 CST 2022.-->
         <!--@Table coupon-->
         <id column="uuid" jdbcType="VARCHAR" property="uuid"/>

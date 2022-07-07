@@ -1,7 +1,7 @@
 package com.uiys.thingsfordesignpattern.service.impl;
 
 import com.uiys.thingsfordesignpattern.convert.CouponConvert;
-import com.uiys.thingsfordesignpattern.domain.Coupon;
+import com.uiys.thingsfordesignpattern.model.Coupon;
 import com.uiys.thingsfordesignpattern.dto.CouponDTO;
 import com.uiys.thingsfordesignpattern.mapper.CouponMapper;
 import com.uiys.thingsfordesignpattern.service.CouponService;

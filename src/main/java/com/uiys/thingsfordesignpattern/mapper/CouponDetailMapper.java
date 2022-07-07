@@ -1,6 +1,6 @@
 package com.uiys.thingsfordesignpattern.mapper;
 
-import com.uiys.thingsfordesignpattern.domain.CouponDetail;
+import com.uiys.thingsfordesignpattern.model.CouponDetail;
 import org.apache.ibatis.annotations.Mapper;
 
 
