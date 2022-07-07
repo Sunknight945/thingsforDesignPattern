@@ -34,12 +34,12 @@ public class ReduceMoneyByDirectlyDiscount extends AbstractReduceMoneyBehave {
         OrderInfo orderInfo = super.getOrderInfo(orderDiscount);
         CouponDetail couponDetail = super.getCouponDetail(orderDiscount);
         Coupon coupon = super.getCoupon(couponDetail);
-        BigDecimal minusAmountOfCoupons = coupon.getMinusAmountOfCoupons();
+        BigDecimal couponDiscount = coupon.getDiscount();
         BigDecimal totalMoney = orderInfo.getTotalMoney();
         orderDiscount.setOrderUuid(orderInfo.getUuid());
         orderDiscount.setOriginCost(totalMoney);
-        orderDiscount.setMinusMoney(totalMoney.subtract(totalMoney.multiply(minusAmountOfCoupons)));
-        orderDiscount.setAfterDiscountPay(totalMoney.multiply(minusAmountOfCoupons));
+        orderDiscount.setMinusMoney(totalMoney.subtract(totalMoney.multiply(couponDiscount)));
+        orderDiscount.setAfterDiscountPay(totalMoney.multiply(couponDiscount));
         return orderDiscount;
     }
 }
